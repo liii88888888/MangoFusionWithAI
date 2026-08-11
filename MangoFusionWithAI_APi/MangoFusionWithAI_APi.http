@@ -1,0 +1,6 @@
+@MangoFusionWithAI_APi_HostAddress = http://localhost:5074
+
+GET {{MangoFusionWithAI_APi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
