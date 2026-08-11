@@ -1,7 +1,7 @@
 # ASP.NET Core 敏感配置
 appsettings.json
 appsettings.Development.json
-appsettings.*.json
+
 
 # Visual Studio
 .vs/
