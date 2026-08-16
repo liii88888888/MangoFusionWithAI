@@ -96,22 +96,34 @@ namespace MangoFusionWithAI_APi.Services
                 orderFromDb.PickUpEmail = dto.PickUpEmail;
             }
 
+            //订单状态流转
             if (!string.IsNullOrEmpty(orderFromDb.Status))
             {
-                //订单状态流转
+                
                 if (orderFromDb.Status.Equals(SD.status_confirmed, StringComparison.InvariantCultureIgnoreCase)
                     && dto.Status.Equals(SD.status_readyForPickUp, StringComparison.InvariantCultureIgnoreCase)) 
                 {
                     orderFromDb.Status = SD.status_readyForPickUp;
                 }
+
                 else if (orderFromDb.Status.Equals(SD.status_readyForPickUp, StringComparison.InvariantCultureIgnoreCase)
                     && dto.Status.Equals(SD.status_Completed, StringComparison.InvariantCultureIgnoreCase))
                 {
                     orderFromDb.Status = SD.status_Completed;
                 }
-                else if (dto.Status.Equals(SD.status_Cancelled, StringComparison.InvariantCultureIgnoreCase))
+
+                //当订单不为已完成和已取消时，可以变成取消状态
+                else if (!orderFromDb.Status.Equals(SD.status_Completed, StringComparison.InvariantCultureIgnoreCase)
+                            && !orderFromDb.Status.Equals(SD.status_Cancelled, StringComparison.InvariantCultureIgnoreCase)
+                            && dto.Status.Equals(SD.status_Cancelled, StringComparison.InvariantCultureIgnoreCase))
                 {
                     orderFromDb.Status = SD.status_Cancelled;
+                }
+
+                //只可以出现四个订单状态，且不允许跳跃状态
+                else 
+                {
+                    return (false, "非法状态流转");
                 }
 
             }

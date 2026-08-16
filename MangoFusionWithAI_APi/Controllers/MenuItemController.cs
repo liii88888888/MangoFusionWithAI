@@ -1,6 +1,8 @@
 ﻿using MangoFusionWithAI_APi.Dto;
 using MangoFusionWithAI_APi.Models;
 using MangoFusionWithAI_APi.Services.IServices;
+using MangoFusionWithAI_APi.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
@@ -52,6 +54,7 @@ namespace MangoFusionWithAI_APi.Controllers
 
         //添加菜品
         [HttpPost]
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<ActionResult<ApiResponse>> CreateMenuItem([FromForm] MenuItemCreateDTO menuItemCreateDTO)
         {
             try
@@ -86,6 +89,7 @@ namespace MangoFusionWithAI_APi.Controllers
 
         //更新菜品
         [HttpPut("{id:int}")]
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<ActionResult<ApiResponse>> UpdateMenuItem(int id, [FromForm] MenuItemUpdateDTO menuItemUpdateDTO)
         {
             try
@@ -111,6 +115,7 @@ namespace MangoFusionWithAI_APi.Controllers
 
         //删除菜品
         [HttpDelete("{id:int}")]
+        [Authorize(Roles = SD.Role_Admin)]
         public async Task<ActionResult<ApiResponse>> DeleteMenuItemAsync(int id)
         {
             try

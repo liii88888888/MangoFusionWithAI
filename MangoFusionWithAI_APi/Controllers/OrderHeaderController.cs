@@ -119,9 +119,9 @@ namespace MangoFusionWithAI_APi.Controllers
                 if (!succeeded)
                 {
                     _response.IsSuccess = false;
-                    _response.StatusCode = HttpStatusCode.NotFound;
+                    _response.StatusCode = HttpStatusCode.BadRequest;
                     _response.ErrorMessages.Add(error);
-                    return NotFound(_response);
+                    return BadRequest(_response);
                 }
 
                 _response.IsSuccess = true;

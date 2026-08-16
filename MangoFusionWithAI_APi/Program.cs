@@ -2,6 +2,7 @@ using System.Text;
 using MangoFusionWithAI_APi.Data;
 using MangoFusionWithAI_APi.Models;
 using MangoFusionWithAI_APi.Services;
+using MangoFusionWithAI_APi.Filters;
 using MangoFusionWithAI_APi.Services.IServices;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
@@ -46,6 +47,11 @@ builder.Services.AddCors(options =>
 });
 
 builder.Services.AddControllers();
+
+// 全局异常处理（统一翻译成 ApiResponse 格式，对应 Java 版 @RestControllerAdvice）
+builder.Services.AddProblemDetails();
+builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
 builder.Services.AddScoped<IOrderService,OrderService>();
 builder.Services.AddScoped<IMenuItemService, MenuItemService>();
 builder.Services.AddScoped<IAuthService, AuthService>();
@@ -68,6 +74,8 @@ using (var scope = app.Services.CreateScope())
 }
 
 // Configure the HTTP request pipeline.
+app.UseExceptionHandler();
+
 app.UseDefaultFiles();
 
 app.UseStaticFiles();

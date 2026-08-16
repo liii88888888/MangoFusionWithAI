@@ -15,7 +15,6 @@ namespace MangoFusionWithAI_APi.Models
         public string PickUpEmail { get; set; } = string.Empty;
         public DateTime OrderDate { get; set; }
 
-        //店家属性
         public string ApplicationUserId { get; set; } = string.Empty;
         [ForeignKey("ApplicationUserId")]
         public ApplicationUser? ApplicationUser { get; set; }

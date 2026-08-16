@@ -2,7 +2,6 @@
 appsettings.json
 appsettings.Development.json
 
-
 # Visual Studio
 .vs/
 *.user
@@ -17,6 +16,9 @@ obj/
 *.dll
 *.exe
 *.pdb
+
+# 菜品图片资源（运行时上传产物，22MB+，不入库）
+MangoFusionWithAI_APi/wwwroot/images/
 
 # NuGet
 packages/
@@ -38,8 +40,3 @@ dist/
 
 # 系统文件
 Thumbs.db
-
-# 菜品图片（原项目资源，非本人代码）
-wwwroot/images/
-VueMangoFusion/src/assets/hero.jpg
-VueMangoFusion/src/assets/confirm.jpg

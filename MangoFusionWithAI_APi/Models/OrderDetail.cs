@@ -14,7 +14,7 @@ namespace MangoFusionWithAI_APi.Models
         [ForeignKey("MenuItemId")]
         public MenuItem? MenuItem { get; set; }
 
-        //实际订单详细
+        //实际订单详细 (关于具体菜品的详细信息）
         [Required]
         public int Quantity { get; set; }
         [Required]
